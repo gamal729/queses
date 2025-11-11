@@ -1,12 +1,9 @@
-import QuizClient from '@/components/QuizClient';
-import { use } from 'react';
+// import QuizClient from '@/components/QuizClient';
+// import { use } from 'react';
 
-// interface Props {
-//   params: { id: string };
+
+// export default function QuizPage({ params }:
+//   {params :Promise<{ id: string}>}) {
+//   const {id} = use(params);
+//   return <QuizClient quizId={id} />;
 // }
-
-export default function QuizPage({ params }:
-  {params :Promise<{ id: string}>}) {
-  const {id} = use(params);
-  return <QuizClient quizId={id} />;
-}

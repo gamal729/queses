@@ -26,9 +26,10 @@ interface QuizData {
 
 interface QuizClientProps {
   quizId: string;
+  courseId: string;
 }
 
-export default function QuizClient({ quizId }: QuizClientProps) {
+export default function QuizClient({ quizId ,courseId}: QuizClientProps) {
   const [quizData, setQuizData] = useState<QuizData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -68,7 +69,7 @@ export default function QuizClient({ quizId }: QuizClientProps) {
         setLoading(true);
         setError(null);
         
-        const response = await fetch(`/data/${quizId}.json`);
+        const response = await fetch(`/${courseId}/${quizId}.json`);
         
         if (!response.ok) {
           throw new Error('فشل تحميل الاختبار');
@@ -251,7 +252,7 @@ export default function QuizClient({ quizId }: QuizClientProps) {
         {/* Header */}
         <div className="bg-white rounded-t-2xl shadow-lg p-6 mb-0">
           <div className="flex justify-between items-start mb-4">
-            <h1 className="text-3xl font-bold text-gray-800 flex-1 text-center">
+            <h1 className="text-2xl font-bold text-gray-800 flex-1 text-center">
               {quizData.quiz.title}
             </h1>
             <button
@@ -287,10 +288,10 @@ export default function QuizClient({ quizId }: QuizClientProps) {
         {/* Question Card */}
         <div className="bg-white rounded-b-2xl shadow-lg p-8">
           <div className="mb-6">
-            <span className="inline-block bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium mb-4">
+            <span className="inline-block bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-medium mb-4">
               {currentQuestion.sectionName}
             </span>
-            <h2 className="text-2xl font-bold text-gray-800 text-right leading-relaxed">
+            <h2 className="text-xl font-bold text-gray-800 text-right leading-relaxed">
               {currentQuestion.question}
             </h2>
           </div>
